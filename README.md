@@ -1,0 +1,1 @@
+![alt text](https://github.com/farmovit/QPointerGrabber/blob/master/pic/demo.gif)
