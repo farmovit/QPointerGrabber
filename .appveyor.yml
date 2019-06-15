@@ -25,3 +25,6 @@ before_build:
 build_script:
   - cd build
   - cmake .. -G %makefiles% -DCMAKE_BUILD_TYPE=Release 
+
+on_finish:
+  - ps: $blockRdp = $true
