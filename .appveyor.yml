@@ -18,6 +18,7 @@ init:
   - set makefiles="MSYS Makefiles"
 
 before_build:
+  - cd C:\projects\qpointergrabber
   - md build
 
 build_script:
