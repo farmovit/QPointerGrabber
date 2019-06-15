@@ -14,7 +14,7 @@ environment:
     suffix: mingw
 
 init:
-  - set PATH=C:\Qt\%qt%\bin;%PATH%
+  - set PATH=C:\Qt\%qt%\bin;C:\mingw-w64\x86_64-7.3.0-posix-seh-rt_v5-rev0\mingw64\bin\;C:\msys64\mingw64\bin;%PATH%
   - set makefiles="MSYS Makefiles"
 
 before_build:
