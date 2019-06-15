@@ -16,10 +16,10 @@ environment:
 init:
   - ps: set PATH=C:\Qt\%qt%\bin;%PATH%
   - ps: set makefiles="MinGW Makefiles"
-	
+
 before_build:
   - ps: md build
-	
+
 build_script:
   - cd build
   - cmake .. -G %makefiles% -DCMAKE_BUILD_TYPE=Release 
