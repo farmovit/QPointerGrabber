@@ -6,7 +6,6 @@ image:
 
 environment:
   APPVEYOR_YML_DISABLE_PS_LINUX: true
-	
   matrix:
   # MinGW
   - name: win32
