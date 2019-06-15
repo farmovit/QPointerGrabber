@@ -1,0 +1,26 @@
+version: 1.0.0.{build}
+
+image: 
+- Visual Studio 2017
+- Ubuntu
+
+environment:
+  APPVEYOR_YML_DISABLE_PS_LINUX: true
+	
+	matrix:
+	# MinGW
+  - name: win32
+    platform: mingw
+    qt: C:\Qt\5.12.2\mingw73_64
+    suffix: mingw
+
+init:
+  - ps: set PATH=C:\Qt\%qt%\bin;%PATH%
+  - ps: set makefiles="MinGW Makefiles"
+	
+before_build:
+  - ps: md build
+	
+build_script:
+  - cd build
+  - cmake .. -G %makefiles% -DCMAKE_BUILD_TYPE=Release 
