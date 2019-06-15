@@ -14,11 +14,11 @@ environment:
     suffix: mingw
 
 init:
-  - ps: set PATH=C:\Qt\%qt%\bin;%PATH%
-  - ps: set makefiles="MinGW Makefiles"
+  - set PATH=C:\Qt\%qt%\bin;%PATH%
+  - set makefiles="MinGW Makefiles"
 
 before_build:
-  - ps: md build
+  - md build
 
 build_script:
   - cd build
