@@ -7,8 +7,8 @@ image:
 environment:
   APPVEYOR_YML_DISABLE_PS_LINUX: true
 	
-	matrix:
-	# MinGW
+  matrix:
+  # MinGW
   - name: win32
     platform: mingw
     qt: C:\Qt\5.12.2\mingw73_64
