@@ -15,7 +15,7 @@ environment:
 
 init:
   - set PATH=C:\Qt\%qt%\bin;%PATH%
-  - set makefiles="MinGW Makefiles"
+  - set makefiles="MSYS Makefiles"
 
 before_build:
   - md build
