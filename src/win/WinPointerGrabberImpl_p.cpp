@@ -3,8 +3,8 @@
 #include <winuser.h>
 
 namespace grabber {
-QPointerGrabberImpl::QPointerGrabberImpl(QWidget *widget) {
-    initialize(widget);
+QPointerGrabberImpl::QPointerGrabberImpl(QWidget *widget)
+    : APointerGrabberImpl(widget) {
 }
 
 void QPointerGrabberImpl::grabPointer() noexcept {
