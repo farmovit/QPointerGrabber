@@ -4,6 +4,7 @@ image:
 - Visual Studio 2017
 
 environment:
+  APPVEYOR_RDP_PASSWORD: Atest123!
   APPVEYOR_YML_DISABLE_PS_LINUX: true
   matrix:
   # MinGW
@@ -13,6 +14,7 @@ environment:
     suffix: mingw
 
 init:
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   - set PATH=C:\Program Files\Git\cmd;C:\Qt\%qt%\bin;C:\Qt\%qt%\lib;C:\mingw-w64\x86_64-7.3.0-posix-seh-rt_v5-rev0\mingw64\bin\;C:\msys64\mingw64\bin
   - set makefiles="MSYS Makefiles"
 
