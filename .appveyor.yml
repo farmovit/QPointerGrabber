@@ -2,6 +2,7 @@ version: 1.0.0.{build}
 
 image: 
 - Visual Studio 2017
+- ubuntu
 
 environment:
   APPVEYOR_RDP_PASSWORD: Atest123!
