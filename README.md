@@ -49,7 +49,7 @@ Please see the [test](https://github.com/farmovit/QPointerGrabber/blob/master/te
 
 ---
 - [x] Add CI for Windows.
-- [ ] Add CI for Linux.
+- [x] Add CI for Linux.
 - [ ] Add MAC OS Support.
 - [ ] Create a packages for various systems.
 - [ ] Extend library for QWindow.
