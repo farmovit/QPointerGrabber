@@ -21,12 +21,24 @@ init:
 before_build:
   - cmd: cd C:\projects\qpointergrabber
   - cmd: md build
+  - sh:  sudo apt install -y qtbase5-dev libqt5x11extras5-dev
+  - sh:  sudo apt install -y openbox menu
+  - sh:  Xvfb :1 -screen 0 1920x1080x24+32 -fbdir /var/tmp &
+  - sh:  sleep 10
+  - sh:  export DISPLAY=:1
+  - sh:  openbox &
+  - sh:  sleep 3
 
 build_script:
   - cmd: cd build
-  - cmd: cmake .. -G"CodeBlocks - MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release 
-  - cmd: mingw32-make
+  - cmd: cmake -G"CodeBlocks - MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release ..
+  - cmd: mingw32-make -j 4
+  - sh: mkdir build
+  - sh: cd build
+  - sh: cmake -DCMAKE_BUILD_TYPE=Release ..
+  - sh: make -j 4
 
-on_finish:
-  - sh: export APPVEYOR_SSH_BLOCK=true
-  - sh: curl -sflL 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-ssh.sh' | bash -e -
+# In case we need debug build
+# on_finish:
+# - sh: export APPVEYOR_SSH_BLOCK=true
+# - sh: curl -sflL 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-ssh.sh' | bash -e -
