@@ -5,28 +5,28 @@ image:
 - ubuntu
 
 environment:
+  APPVEYOR_SSH_KEY: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAA/yxqHm6VyO4CkJ6PfRZDQ8JOavZzhhFUPxyWVcrMbZ5SJQrwV5CLpbfyBqWBUF1VSbFD5e6aHXV7Tukz1R9x/UDIUx4QdjPwyiKFzEan7dTKCChD1qqD5t5w9yVEfCO6i8NYZr5nHhtYeSIXoClJ41y/bl0YNLLSfYNYz4DXMhIcaf/XNUzqwugbNQjCaIzISezB99mCPlQV8s6guLB44uJG6zMUp5qa2FX8F3cKfuNoaIr3Es6P0X6KfAcm2/xGQxWFSSnkFMK/5oBEv3yDP5is6qcBJ4IG0JKTwK1WPh49fV7wAxG4yNSmJAeV5C+Fe6Bd6KpzQ5YOS9yuHBDNgw==
   APPVEYOR_RDP_PASSWORD: Atest123!
   APPVEYOR_YML_DISABLE_PS_LINUX: true
-  matrix:
-  # MinGW
-  - name: win32
-    platform: mingw
-    QTDIR: C:\Qt\5.12.2\mingw73_64
-    QTTOOLS: C:\Qt\Tools\mingw730_64\bin
-    suffix: mingw
 
 init:
-  - set PATH=%PATH%;%QTDIR%\bin;%QTTOOLS%
-  - set CC=%QTTOOLS%\gcc.exe
-  - set CXX=%QTTOOLS%\g++.exe
-  - set Qt5_DIR=%QTDIR%\lib\cmake\Qt5
-  - set PATH=%PATH:C:\Program Files\Git\usr\bin=%
+  - cmd: set QTDIR=C:\Qt\5.12.2\mingw73_64
+  - cmd: set QTTOOLS=C:\Qt\Tools\mingw730_64\bin
+  - cmd: set PATH=%PATH%;%QTDIR%\bin;%QTTOOLS%
+  - cmd: set CC=%QTTOOLS%\gcc.exe
+  - cmd: set CXX=%QTTOOLS%\g++.exe
+  - cmd: set Qt5_DIR=%QTDIR%\lib\cmake\Qt5
+  - cmd: set PATH=%PATH:C:\Program Files\Git\usr\bin=%
 
 before_build:
-  - cd C:\projects\qpointergrabber
-  - md build
+  - cmd: cd C:\projects\qpointergrabber
+  - cmd: md build
 
 build_script:
-  - cd build
-  - cmake .. -G"CodeBlocks - MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release 
-  - mingw32-make
+  - cmd: cd build
+  - cmd: cmake .. -G"CodeBlocks - MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release 
+  - cmd: mingw32-make
+
+on_finish:
+  - sh: export APPVEYOR_SSH_BLOCK=true
+  - sh: curl -sflL 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-ssh.sh' | bash -e -
