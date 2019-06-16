@@ -10,13 +10,16 @@ environment:
   # MinGW
   - name: win32
     platform: mingw
-    qt: 5.12.2\mingw73_64
+    QTDIR: C:\Qt\5.12.2\mingw73_64
+    QTTOOLS: C:\Qt\Tools\mingw730_64\bin
     suffix: mingw
 
 init:
-  - set PATH=C:\Program Files\Git\cmd;C:\Qt\%qt%\bin;C:\Qt\%qt%\lib;C:\mingw-w64\x86_64-7.3.0-posix-seh-rt_v5-rev0\mingw64\bin\;C:\msys64\mingw64\bin
-  - set makefiles="MSYS Makefiles"
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+  - set PATH=%PATH%;%QTDIR%\bin;%QTTOOLS%
+  - set CC=%QTTOOLS%\gcc.exe
+  - set CXX=%QTTOOLS%\g++.exe
+  - set Qt5_DIR=%QTDIR%\lib\cmake\Qt5
+  - set PATH=%PATH:C:\Program Files\Git\usr\bin=%
 
 before_build:
   - cd C:\projects\qpointergrabber
@@ -24,4 +27,5 @@ before_build:
 
 build_script:
   - cd build
-  - cmake .. -G %makefiles% -DCMAKE_BUILD_TYPE=Release 
+  - cmake .. -G"CodeBlocks - MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release 
+  - mingw32-make

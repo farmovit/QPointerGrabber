@@ -1,5 +1,25 @@
-#include "GrabberTest.h"
+#include "QPointerGrabber.h"
 #include <QtTest>
+#include <QPushButton>
+
+class GrabberTest : public QObject
+{
+    Q_OBJECT
+public:
+    explicit GrabberTest(QObject *parent = nullptr);
+private slots:
+    void grabTest();
+    void ungrabTest();
+    void multiWidgetsGrabTest();
+private:
+    void checkIfCursorIsGrabbed(QPushButton *button, const QPoint &limitPoint, const grabber::QPointerGrabber *grabber);
+    void checkIfCursorIsNotGrabbed(QPushButton *button, const QPoint &limitPoint, const grabber::QPointerGrabber *grabber);
+private:
+    std::unique_ptr<QPushButton> mFirstButton;
+    std::unique_ptr<QPushButton> mSecondButton;
+    grabber::QPointerGrabber mFirstGrabber;
+    std::unique_ptr<grabber::QPointerGrabber> mSecondGrabber;
+};
 
 namespace {
 constexpr auto firstWidgetSize = QSize(200, 200);
@@ -104,3 +124,5 @@ void GrabberTest::multiWidgetsGrabTest() {
 }
 
 QTEST_MAIN(GrabberTest)
+
+#include "GrabberTest.moc"
