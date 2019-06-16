@@ -39,7 +39,7 @@ Qt5.X
 mkdir build
 cd build
 cmake ..
-make -j 8
+make -j N
 ```
 
 ## 🎈 Usage <a name="usage"></a>
