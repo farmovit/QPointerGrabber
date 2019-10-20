@@ -10,7 +10,7 @@ environment:
   APPVEYOR_YML_DISABLE_PS_LINUX: true
 
 init:
-  - cmd: set QTDIR=C:\Qt\5.12.2\mingw73_64
+  - cmd: set QTDIR=C:\Qt\5.12.4\mingw73_64
   - cmd: set QTTOOLS=C:\Qt\Tools\mingw730_64\bin
   - cmd: set PATH=%PATH%;%QTDIR%\bin;%QTTOOLS%
   - cmd: set CC=%QTTOOLS%\gcc.exe
@@ -19,7 +19,7 @@ init:
   - cmd: set PATH=%PATH:C:\Program Files\Git\usr\bin=%
 
 before_build:
-  - cmd: cd C:\projects\qpointergrabber
+  - cmd: cd C:\projects\qpointergrabber*
   - cmd: md build
   - sh:  sudo apt install -y qtbase5-dev libqt5x11extras5-dev
   - sh:  sudo apt install -y openbox menu
